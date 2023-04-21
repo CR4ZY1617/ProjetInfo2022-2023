@@ -1,0 +1,32 @@
+﻿La Grande Guerre Nucléaire a eu lieu il y a 20 ans. Afin de survivre vous et votre famille, vous êtes réfugiés dans un bunker anti atomique. Vos provisions ont commencé à manquer, vos proches sont morts de faim et de maladie, il ne reste plus que vous. Il va falloir que vous sortiez pour survivre. Avant de partir, vous allez devoir choisir votre personnage, ces derniers possèdent des caractéristique différentes qui les avatages ou non dans différentes situations :
+    • Les PV 
+    • La Force
+    • L’Agilité
+    • La Précision
+    • Le Charisme
+
+Vous allez donc de voir choisir un personnage qui va vous representer pendant l’aventure, vous avez le choix entre :
+
+1) Jacob				2) Claire				3) Franck
+
+PV : 15				PV : 10				PV : 20
+Force : 5				Force :	3				Force : 8
+Agilité : 6				Agilité : 8				Agilité : 3
+Précision : 5				Précision : 8				Précision : 2
+Charisme : 4				Charisme : 5				Charisme : 8
+
+Après avoir choisi votre personnage, vous allez de voir choisir de l’équipement de base, vous avez un sac avec 20 places dedans, voilà les objets proposés :
+
+    • Revolver (6 balles incluses) [5]
+    • x6 Balles [3]
+    • Couteau [3]
+    • Eau [4]
+    • Nourriture [4]
+    • Lampe Torche [3]
+    • Masque à Gaz [4]
+    • Trousse de soins[5]
+    • Carte [2]
+    • x5 Pièces d’or[1] 
+
+
+Vous venez de sortir de l’abris, vous ne savez pas dans quelle direction allé, voulez-vous utilisés la carte ?
