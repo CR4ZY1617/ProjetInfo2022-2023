@@ -9,7 +9,7 @@ Vous allez donc de voir choisir un personnage qui va vous representer pendant l�
 
 1) Jacob				2) Claire				3) Franck
 
-PV : 15				PV : 10				PV : 20
+PV : 15				        PV : 10				        PV : 20
 Force : 5				Force :	3				Force : 8
 Agilité : 6				Agilité : 8				Agilité : 3
 Précision : 5				Précision : 8				Précision : 2
@@ -25,8 +25,7 @@ Après avoir choisi votre personnage, vous allez de voir choisir de l’équipem
     • Lampe Torche [3]
     • Masque à Gaz [4]
     • Trousse de soins[5]
-    • Carte [2]
     • x5 Pièces d’or[1] 
 
 
-Vous venez de sortir de l’abris, vous ne savez pas dans quelle direction allé, voulez-vous utilisés la carte ?
+Vous venez de sortir de l’abris, vous ne savez pas dans quelle direction aller.
