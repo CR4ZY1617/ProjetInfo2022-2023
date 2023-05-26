@@ -84,8 +84,9 @@ int read1(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go != )
-  scanf("%d", &go);
+  while (go != 2 || go != 3){
+    scanf("%d", &go);
+  }
   return(go);
 }
 
