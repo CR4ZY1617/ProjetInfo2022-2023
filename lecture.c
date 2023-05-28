@@ -17,7 +17,7 @@ int lecturefuite(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<0 && go>5 ){
+  while (go<=0 && go>5 ){
     scanf("%d", &go);
   }
   return(go);
@@ -55,7 +55,7 @@ int lecturecarte(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-   while (go<0 && go>5 ){
+   while (go<=0 && go>5 ){
     scanf("%d", &go);
   }
   return(go);
@@ -121,7 +121,7 @@ int lectureferme3(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<0 && go>4 ){    
+  while (go<=0 && go>4 ){    
     scanf("%d", &go);
   }
   return(go);
@@ -166,7 +166,7 @@ int lecturecomi2(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<0 && go>5 ){    
+  while (go<=0 && go>5 ){    
     scanf("%d", &go);
   }
   return(go);
@@ -187,7 +187,7 @@ int lecturecomi2bis(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<0 && go>5 ){    
+  while (go<=0 && go>5 ){    
     scanf("%d", &go);
   }
   return(go);
@@ -232,7 +232,7 @@ int lecturecomi2bis3(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<0 && go>5 ){   
+  while (go<=0 && go>5 ){   
     scanf("%d", &go);
   }
   return(go);
@@ -272,7 +272,7 @@ int lecturecomi3(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<0 && go>4 ){
+  while (go<=0 && go>4 ){
    scanf("%d", &go);
   }
   return(go);
@@ -335,7 +335,7 @@ int lecturecamp3(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<0 && go>4 ){    
+  while (go<=0 && go>4 ){    
     scanf("%d", &go);
   }
   return(go);
