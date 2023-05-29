@@ -484,7 +484,7 @@ int lectureville(){
   fclose(fichier);
   return(-1);
 
- void lecturehéros(){
+ void lectureheros(){
   //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
   int i,j;
   int perso = 0;
