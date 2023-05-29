@@ -5,4 +5,4 @@ Projet d'info 2022-2023
 
   Le programme se compose d'abord d'une structure permettant de définir les Héros, suivi ensuite d'une fonction vous permettant de choisir votre héro, ses stats et son inventaire de départs seront ensuite pris en compte et notée. Vous devrez une possiblité et écrire l'entier qui y correspond.
   Le reste des fonctions sert principalement de fonctions permettant d'ouvrir un fichier et de l'afficher, ces fonction servent aussi à enregister votre choix et à vous lancer la séquence suivante.
-Une fonction permet d'accéder à la liste des fichiers. 
+Une fonction permet d'accéder à la liste des fichiers. Un autre structure Ennemi nous permet de récupérer les stats des adversaires.
