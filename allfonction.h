@@ -1,6 +1,9 @@
+#ifndef PROJETINFO2022-2023_ALLFONCTION_H
+#define PROJETINFO2022-2023_ALLFONCTION_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 
 typedef struct{
   int pv;
@@ -52,3 +55,5 @@ Ennemi ratb();
 Ennemi rat();
 Ennemi bandit();
 Ennemi goule();
+
+#endIf
