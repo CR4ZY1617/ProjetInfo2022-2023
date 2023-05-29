@@ -53,5 +53,3 @@ Ennemi ratb();
 Ennemi rat();
 Ennemi bandit();
 Ennemi goule();
-
-#endIf
