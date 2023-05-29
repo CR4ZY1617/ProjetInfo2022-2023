@@ -4,7 +4,7 @@ main.o: main.c
 	gcc -c main.c -o main.o
 
 fonction.o: allfonction.c allfonction.h
-	gcc -c allfonctionallfonction.c -o allfonction.o
+	gcc -c allfonction.c -o allfonction.o
   
 exec: main.o allfonction.o
 	gcc allfonction.o main.o -o exec
