@@ -234,24 +234,21 @@ int list(int go){
   return(take);
 }
 
+void write_Heros(Heros a){
+  int val;
+  FILE * fichier = NULL;
+  fichier = fopen("Heros", "wb+");
+  fwrite(&a, sizeof(Heros), 1, fichier);
+  fclose(fichier);
+}
 
 Heros Initialise(){
   //Lis le nom et les stats du héro dans son fichier.
-  Heros A;
-  int i;
-  FILE *test = NULL;
-  test = fopen("Hero.txt", "r+");
-  if (test == NULL) {
-    printf("Ouverture du fichier impossible");
-    exit(1);
-  }
-  fscanf(test, "%s", A.nom);
-  fscanf(test, "%d", &A.str);
-  fscanf(test, "%d", &A.agi);
-  fscanf(test, "%d", &A.aim);
-  fscanf(test, "%d", &A.luck);
-  fclose(test);
-  return(A);
+  Heros a;
+  FILE * fichier = NULL;
+  fichier = fopen("Heros", "rb+");
+  fread (&a,sizeof(Heros),1,fichier);
+  return(a);
 }
 
 
