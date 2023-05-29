@@ -119,7 +119,7 @@ int lectureferme3(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<=1 && go>4 ){    
+  while (go<=0 && go>4 ){    
     scanf("%d", &go);
   }
   return(go);
