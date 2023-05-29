@@ -113,7 +113,7 @@ int list(int go){
     break;
     case 19 : take = lecturehopitaldroit2bis(go);
     break;
-    case 20 : take = lecturehopitaldroit3bis(go);
+    case 20 : take = lecturehopitaldroit3(go);
     break;
     case 21 : take = lecturehopital3(go);
     break;
