@@ -1,5 +1,5 @@
 # Nom du programme
-TARGET = Mysterus_adventure
+TARGET = ProjetInfo2022-2023
 
 # Compilateur
 CC = gcc
@@ -8,15 +8,13 @@ CC = gcc
 CFLAGS = -Wall -Wextra
 
 # Liste des fichiers source
-SOURCES = main.c usual.c  menu.c init.c scoremanager.c gameplay.c game.c
+SOURCES = main.c lecture.c  ennemi.c
 
 # Liste des fichiers objets correspondant aux fichiers source
 OBJECTS = $(SOURCES:.c=.o)
 
 # Règle par défaut
 all: $(TARGET)
-
-
 
 # Règle de compilation des fichiers objets
 %.o: %.c
