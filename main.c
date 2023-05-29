@@ -48,6 +48,34 @@ int MainPage(){
   return (go);
 } 
 
+int use_weapon(Chara a ,Ennemy b, int choice){
+  int damage;
+  if (choice == 1){
+    if (a.invent[1] <= 0 || a.invent[2] <= 0){
+      puts("Vous ne pouvez pas tirer avec cette arme !");
+    }
+    else{
+      damage = a.str + 5;
+    }
+  else if(choice == 2){
+    if (a.invent[3] <= 0){
+      puts("Vous n'avez pas cette arme !");
+    }
+    else{
+      damage = a.str + 2;
+    }
+  }
+  else{
+    if (a.invent[4] <= 0 || a.invent[5] <= 0){
+      puts("Vous ne pouvez pas tirer avec cette arme !");
+    }
+    else{
+      damage = a.str + 7;
+    }
+  }
+  return(damage);
+}
+  
 int combat(Chara a, Ennemy b){
   int end,answer,choice_w;
   while (a.hp > 0 && b.hp > 0){
