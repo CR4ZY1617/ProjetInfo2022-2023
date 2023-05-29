@@ -69,32 +69,36 @@ int read0(int go){
   return(go);
 }
 
-int read1(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
-  int i;
-  FILE *fichier = NULL;
-  fichier = fopen("ferme1.txt", "r+");
-  if (fichier == NULL) {
-    printf("Ouverture du fichier impossible");
-    exit(1);
-  }
-  char phrase[400];
-  for (i = 0; i < 3; i++) {
-    fgets(phrase, 399, fichier);
-    printf("%s \n", phrase);
-  }
-  fclose(fichier);
-  while (go != 2 || go != 3){
-    scanf("%d", &go);
-  }
-  return(go);
-}
-
-
 int list(int go){
   //Permet d'accéder à la liste des fichiers. 
   int take = -1;    
   switch(go){
+    case 0 : take = read0(go);
+    break;
+    case 0 : take = read0(go);
+    break;
+    case 0 : take = read0(go);
+    break;
+    case 0 : take = read0(go);
+    break;
+    case 0 : take = read0(go);
+    break;
+    case 0 : take = read0(go);
+    break;
+    case 0 : take = read0(go);
+    break;
+    case 0 : take = read0(go);
+    break;
+    case 0 : take = read0(go);
+    break;
+    case 0 : take = read0(go);
+    break;
+    case 0 : take = read0(go);
+    break;
+    case 0 : take = read0(go);
+    break;
+    case 0 : take = read0(go);
+    break;
     case 0 : take = read0(go);
     break;
     default : puts("Vous êtes hors des limites ! Mauvaise nouvelles, votre aventure s'arrête ici !");
