@@ -3,7 +3,7 @@
 #include <string.h>
 
 int lecturefuite(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre le fichier "fuite" puis demande de rentrer un nombre entier entre 1 et 5.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("fuite.txt", "r+");
@@ -23,8 +23,8 @@ int lecturefuite(int go){
   return(go);
 }
 
-void lecturemort(){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+int lecturemort(){
+  //Ouvre et lit le fichier "mort" puis renvoie -1.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("mort.txt", "r+");
@@ -38,10 +38,11 @@ void lecturemort(){
     printf("%s \n", phrase);
   }
   fclose(fichier);
+  return(-1);
 }
 
 int lecturecarte(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit le fichier "carte" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("choix carte.txt", "r+");
@@ -55,14 +56,14 @@ int lecturecarte(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-   while (go<=0 && go>5 ){
+   while (go<= 0 && go>5 ){
     scanf("%d", &go);
   }
   return(go);
 }
 
 int lectureferme1(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit le fichier "ferme choix1"  puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("fermechoix1.txt", "r+");
@@ -86,7 +87,7 @@ int lectureferme1(int go){
 }
 
 int lectureferme2(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit un fichier "lecture ferme2" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("ferme choix2.txt", "r+");
@@ -107,7 +108,7 @@ int lectureferme2(int go){
 }
 
 int lectureferme3(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit un fichier "ferme choix 3" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("ferme choix3.txt", "r+");
@@ -128,7 +129,7 @@ int lectureferme3(int go){
 }
 
 int lecturecomi1(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit un fichier "comi choix 1" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("comi choix 1.txt", "r+");
@@ -152,7 +153,7 @@ int lecturecomi1(int go){
 }
 
 int lecturecomi2(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit un fichier "comi choix 2" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("comi choix 2.txt", "r+");
@@ -173,7 +174,7 @@ int lecturecomi2(int go){
 }
 
 int lecturecomi2bis(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit un fichier "comi choix 2bis" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("comi choix 2bis.txt", "r+");
@@ -194,7 +195,7 @@ int lecturecomi2bis(int go){
 }
 
 int lecturecomi2bis2(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit un fichier "comi choix 2bis2" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("comi choix 2bis2.txt", "r+");
@@ -218,7 +219,7 @@ while (go != 1 || go != 2){
 }
 
 int lecturecomi2bis3(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit un fichier "comi choix 2bis3 " puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("comi choix 2bis3.txt", "r+");
@@ -239,7 +240,7 @@ int lecturecomi2bis3(int go){
 }
 
 int lecturecomi2bis4(){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit un fichier "choix comi choix 2bis4" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("comi choix 2bis4.txt", "r+");
@@ -258,7 +259,7 @@ int lecturecomi2bis4(){
 }
 
 int lecturecomi3(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit un fichier "comi choix 3" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("comi choix 3.txt", "r+");
@@ -279,7 +280,7 @@ int lecturecomi3(int go){
 }
 
 int lecturecamp1(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit un fichier "camp choix 1" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("camp choix 1.txt", "r+");
@@ -303,7 +304,7 @@ int lecturecamp1(int go){
 }
 
 int lecturecamp2(){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit un fichier "camp choix 2" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("camp choix 2.txt", "r+");
@@ -321,7 +322,7 @@ int lecturecamp2(){
 }
 
 int lecturecamp3(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit le fichier "camp choix 3" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("camp choix 3.txt", "r+");
@@ -342,7 +343,7 @@ int lecturecamp3(int go){
 }
 
 int lecturehopital1(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit le fichier "hopital choix 1" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("hopital choix 1.txt", "r+");
@@ -363,7 +364,7 @@ int lecturehopital1(int go){
 }
 
 int lecturehopitalgauche(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit le fichier "hopital choix gauche" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("hopital choix gauche.txt", "r+");
@@ -387,7 +388,7 @@ int lecturehopitalgauche(int go){
 }
 
 int lecturehopitaldroit1(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit le fichier "hopital choix droit 1" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("hopital choix droit 1.txt", "r+");
@@ -411,7 +412,7 @@ int lecturehopitaldroit1(int go){
 }
 
 int lecturehopitaldroit2(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit le fichier "hopital choix droit 2" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("hopital choix droit 2.txt", "r+");
@@ -432,7 +433,7 @@ int lecturehopitaldroit2(int go){
 }
 
 int lecturehopitaldroit2bis(){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit le fichier "hopital choix 2 bis" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("hopital choix droit 2 bis.txt", "r+");
@@ -450,7 +451,7 @@ int lecturehopitaldroit2bis(){
 }
 
 int lecturehopitaldroit3(){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  //Ouvre et lit le fichier "hopital choix droit 3" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
   fichier = fopen("hopital choix droit 3.txt", "r+");
