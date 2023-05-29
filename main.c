@@ -5,6 +5,9 @@
 typedef struct {
   char nom[20];
   int pv;
+  int luck;
+  int agi;
+  int aim;
   int str;
   int invent[20]; 
 } Heros;
