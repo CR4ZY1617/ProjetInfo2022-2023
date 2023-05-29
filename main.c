@@ -48,6 +48,51 @@ int MainPage(){
   return (go);
 } 
 
+int combat(Chara a, Ennemy b){
+  int end,answer,choice_w;
+  while (a.hp > 0 || b.hp > 0){
+    puts("Que voulez vous faire ? \n 1.Attaque au poing \n 2.Prendre une arme \n 3.Utiliser une trousse de soin");
+    scanf("%d",&answer);
+    if (answer == 1){
+      printf("Vous attaquez %s, vous lui infligez %d dégâts ! \n", b.name , a.str );
+      b.hp = b.hp - a.str;
+    }
+    else if (answer == 2){
+      if (a.invent[1] > 0 && a.invent[2] > 0){
+        printf("1.Revolver (%d balles) \n", a.invent[2]);
+      }
+      if (a.invent[3] > 0){
+        puts("2.Couteau");
+      }
+      if (a.invent[4] > 0 && a.invent[5] > 0){
+        printf("3.Fusil à pompe(%d balles)", a.invent[5]);  
+      }
+      while(choice_w <)
+      scanf("%d", &choice_w);
+      b.hp = b.hp - use_weapon(a,b,choice_w);
+    }
+    else if(answer == 3){
+      if (a.invent[0] != 1){
+        puts("Vous soignez 10 points de vie !");
+        a.hp += 10;
+      }
+      else{
+        puts("Vous cherchez une trousse de soin mais vous n'en avez pas, vous passez votre tour !");
+      }
+    }
+    if (b.hp != 0){
+      a.hp = a.hp - b.str;
+      printf("Vous subissez %d dégâts, il vous en reste %d \n", b.str, a.hp);
+    }
+  }
+  if (a.hp > 0){
+    end = 1;
+  }
+  else{
+    end = 0;
+  }
+  return(end);
+}
 
 int read0(int go){
   //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
