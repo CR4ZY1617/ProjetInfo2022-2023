@@ -50,7 +50,7 @@ int MainPage(){
 
 int combat(Chara a, Ennemy b){
   int end,answer,choice_w;
-  while (a.hp > 0 || b.hp > 0){
+  while (a.hp > 0 && b.hp > 0){
     puts("Que voulez vous faire ? \n 1.Attaque au poing \n 2.Prendre une arme \n 3.Utiliser une trousse de soin");
     scanf("%d",&answer);
     if (answer == 1){
