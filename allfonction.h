@@ -48,7 +48,7 @@ int lecturehopitaldroit2(int go);
 int lecturehopitaldroit2bis(int go);
 int lecturehopitaldroit3(int go);
 int lectureville();
-void lecturehéros();
+void lectureheros();
 Ennemi ratb();
 Ennemi rat();
 Ennemi bandit();
