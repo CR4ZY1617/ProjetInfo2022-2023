@@ -466,3 +466,24 @@ int lecturehopitaldroit3(){
   fclose(fichier);
   return(0);
 }
+
+int lecturecombat(int go){
+  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  int i;
+  FILE *fichier = NULL;
+  fichier = fopen("combat.txt", "r+");
+  if (fichier == NULL) {
+    printf("Ouverture du fichier impossible");
+    exit(1);
+  }
+  char phrase[400];
+  for (i = 0; i < 3; i++) {
+    fgets(phrase, 399, fichier);
+    printf("%s \n", phrase);
+  }
+  fclose(fichier);
+  while (go<=0 && go>3 ){
+   scanf("%d", &go);
+  }
+  return(go);
+}
