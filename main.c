@@ -81,7 +81,7 @@ int list(int go){
     break;
     case 3 : take = lecturehopital1(go);
     break;
-    case 4 : take = read0(go);
+    case 4 : take = lecturecamp1(go);
     break;
     case 5 : take = lecturefuite(go);
     break;
@@ -117,13 +117,13 @@ int list(int go){
     break;
     case 21 : take = lecturehopital3(go);
     break;
-    case 22 : take = read0(go);
+    case 22 : take = lecturecamp2(go);
     break;
-    case 23 : take = read0(go);
+    case 23 : take = lecturecamp3(go);
     break;
-    case 24 : take = read0(go);
+    case 24 : take = lecturemort();
     break;
-    case 25 : take = read0(go);
+    case 25 : take = lectureville(go);
     break;
     default : puts("Vous êtes hors des limites ! Mauvaise nouvelles, votre aventure s'arrête ici !");
     }
