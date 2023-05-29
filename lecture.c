@@ -489,6 +489,27 @@ int lecturehopitaldroit3(int go){
   return(0);
 }
 
+
+int lectureville(){
+  //Ouvre et lit le fichier "mort" puis renvoie -1.
+  int i;
+  FILE *fichier = NULL;
+  fichier = fopen("ville.txt", "r+");
+  if (fichier == NULL) {
+    printf("Ouverture du fichier impossible");
+    exit(1);
+  }
+  char phrase[400];
+  for (i = 0; i < 17; i++) {
+    fgets(phrase, 399, fichier);
+    printf("%s \n", phrase);
+  }
+  fclose(fichier);
+  return(-1);
+
+
+
+
 int lecturecombat(int go){
   //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
   int i;
