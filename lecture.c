@@ -17,7 +17,7 @@ int lecturefuite(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<=0 && go>5 ){
+  while (go!=1 && go!=2 && go!=3 && go!=4 && go!=25 ){
     scanf("%d", &go);
   }
   return(go);
@@ -119,7 +119,7 @@ int lectureferme3(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<=0 && go>4 ){    
+  while (go!=2 && go!=3 && go!=4 && go!=25){    
     scanf("%d", &go);
   }
   return(go);
@@ -140,7 +140,7 @@ int lecturecomi1(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go != 1 || go != 2){   
+  while (go != 10 || go != 5){   
    scanf("%d", &go);
   }
   return(go);
@@ -149,6 +149,7 @@ int lecturecomi1(int go){
 int lecturecomi2(int go){
   //Ouvre et lit un fichier "comi choix 2" puis demande de rentrer un nombre entier.
   int i;
+  int rep = 0;
   FILE *fichier = NULL;
   fichier = fopen("comi choix 2.txt", "r+");
   if (fichier == NULL) {
@@ -161,8 +162,17 @@ int lecturecomi2(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<=0 && go>5 ){    
-    scanf("%d", &go);
+  while (rep<=0 || rep>5){    
+    scanf("%d", &rep);
+  }
+  if ( rep == 3){
+    go = 15;
+  }
+  elseif ( rep == 5){
+    go = 5;
+  }
+  else{
+    go == 11
   }
   return(go);
 }
@@ -182,8 +192,17 @@ int lecturecomi2bis(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<=0 && go>5 ){    
-    scanf("%d", &go);
+  while (rep<=0 || rep>5){    
+    scanf("%d", &rep);
+  }
+  if ( rep == 3){
+    go = 15;
+  }
+  else if ( rep == 5){
+    go = 5;
+  }
+  else{
+    go == 11
   }
   return(go);
 }
@@ -191,6 +210,7 @@ int lecturecomi2bis(int go){
 int lecturecomi2bis2(int go){
   //Ouvre et lit un fichier "comi choix 2bis2" puis demande de rentrer un nombre entier.
   int i;
+  int rep;
   FILE *fichier = NULL;
   fichier = fopen("comi choix 2bis2.txt", "r+");
   if (fichier == NULL) {
@@ -203,8 +223,12 @@ int lecturecomi2bis2(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-while (go != 1 || go != 2){
-  scanf("%d", &go);
+  scanf("%d", &rep);
+  if ( rep == 2){
+    go = 5;
+  }
+  else{
+    printf(" Vous allez vous battre \n" );
   }
   return(go);
 }
@@ -224,8 +248,17 @@ int lecturecomi2bis3(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<=0 && go>5 ){   
-    scanf("%d", &go);
+   while (rep<=0 || rep>5){    
+    scanf("%d", &rep);
+  }
+  if ( rep == 3){
+    go = 15;
+  }
+  else if ( rep == 5){
+    go = 5;
+  }
+  else{
+    go == 11
   }
   return(go);
 }
@@ -263,7 +296,7 @@ int lecturecomi3(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<=0 && go>4 ){
+  while (go!=1 && go!=3 && go!=4 && go!=25 ){
    scanf("%d", &go);
   }
   return(go);
@@ -284,13 +317,13 @@ int lecturecamp1(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go != 1 || go != 2){   
+  while (go != 5 || go != 22){   
    scanf("%d", &go);
   }
   return(go);
 }
 
-int lecturecamp2(){
+int lecturecamp2(int go){
   //Ouvre et lit un fichier "camp choix 2" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
@@ -304,8 +337,9 @@ int lecturecamp2(){
     fgets(phrase, 399, fichier);
     printf("%s \n", phrase);
   }
-  fclose(fichier); 
-  return(0);
+  fclose(fichier);
+  go = 23;
+  return(go);
 }
 
 int lecturecamp3(int go){
@@ -323,7 +357,7 @@ int lecturecamp3(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go<=0 && go>4 ){    
+  while (go!=1 && go!=2 && go!=3 && go!=25 ){    
     scanf("%d", &go);
   }
   return(go);
@@ -344,7 +378,7 @@ int lecturehopital1(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go != 1 || go != 2){
+  while (go != 16 || go != 17){
     scanf("%d", &go);
   }
   return(go);
@@ -365,7 +399,7 @@ int lecturehopitalgauche(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go != 1 || go != 2){
+  while (go != 5 || go != 17){
     scanf("%d", &go);
   }
   return(go);
@@ -386,7 +420,7 @@ int lecturehopitaldroit1(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go < 1 && go > 3){
+  while (go!= 5 && go!=18 && go!=19 ){
     scanf("%d", &go);
   }
   return(go);
@@ -407,13 +441,13 @@ int lecturehopitaldroit2(int go){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  while (go != 1 || go != 2){
+  while (go != 19 || go != 20){
     scanf("%d", &go);
   }
   return(go);
 }
 
-int lecturehopitaldroit2bis(){
+int lecturehopitaldroit2bis(int go){
   //Ouvre et lit le fichier "hopital choix 2 bis" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
@@ -428,10 +462,13 @@ int lecturehopitaldroit2bis(){
     printf("%s \n", phrase);
   }
   fclose(fichier);
+  while (go != 1 && go != 2 && go!=4 && go!=25){
+    scanf("%d", &go);
+  }
   return(0);
 }
 
-int lecturehopitaldroit3(){
+int lecturehopitaldroit3(int go){
   //Ouvre et lit le fichier "hopital choix droit 3" puis demande de rentrer un nombre entier.
   int i;
   FILE *fichier = NULL;
@@ -446,6 +483,9 @@ int lecturehopitaldroit3(){
     printf("%s \n", phrase);
   }
   fclose(fichier);
+  while (go != 1 && go != 2 && go!=4 && go!=25){
+    scanf("%d", &go);
+  }
   return(0);
 }
 
