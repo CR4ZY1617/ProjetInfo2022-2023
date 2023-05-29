@@ -105,6 +105,26 @@ int list(int go){
     break;
     case 15 : take = lecturecomi3(go);
     break;
+    case 16 : take = read0(go);
+    break;
+    case 17 : take = read0(go);
+    break;
+    case 18 : take = read0(go);
+    break;
+    case 19 : take = read0(go);
+    break;
+    case 20 : take = read0(go);
+    break;
+    case 21 : take = read0(go);
+    break;
+    case 22 : take = read0(go);
+    break;
+    case 23 : take = read0(go);
+    break;
+    case 24 : take = read0(go);
+    break;
+    case 25 : take = read0(go);
+    break;
     default : puts("Vous êtes hors des limites ! Mauvaise nouvelles, votre aventure s'arrête ici !");
     }
   return(take);
