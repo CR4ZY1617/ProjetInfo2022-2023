@@ -87,9 +87,9 @@ int list(int go){
     break;
     case 6 : take = lectureferme2(go);
     break;
-    case 7 : take = lecturerat(go);
+    case 7 : take = lectureferme2bis(go);
     break;
-    case 8 : take = lectureratblessé(go);
+    case 8 : take = lecturefermebis2(go);
     break;
     case 9 : take = lectureferme3(go);
     break;
