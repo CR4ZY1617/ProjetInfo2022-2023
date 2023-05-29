@@ -67,8 +67,9 @@ int combat(Chara a, Ennemy b){
       if (a.invent[4] > 0 && a.invent[5] > 0){
         printf("3.Fusil à pompe(%d balles)", a.invent[5]);  
       }
-      while(choice_w <)
-      scanf("%d", &choice_w);
+      do{
+        scanf("%d", &choice_w);
+      }while(choice_w <= 0 || choice_w > 3);
       b.hp = b.hp - use_weapon(a,b,choice_w);
     }
     else if(answer == 3){
