@@ -20,8 +20,6 @@ Après avoir choisi votre personnage, vous allez de voir choisir de l’équipem
     • Revolver (6 balles incluses) [5]
     • x6 Balles [3]
     • Couteau [3]
-    • Eau [4]
-    • Nourriture [4]
     • Lampe Torche [3]
     • Masque à Gaz [4]
     • Trousse de soins[5]
