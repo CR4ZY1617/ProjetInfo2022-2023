@@ -79,9 +79,6 @@ int lectureferme1(int go){
   fclose(fichier);
   while (go != 1 || go != 2){
     scanf("%d", &go);
-    if ( go == 1){
-      lecturefuite(go);
-    }
   }
   return(go);
 }
@@ -145,9 +142,6 @@ int lecturecomi1(int go){
   fclose(fichier);
   while (go != 1 || go != 2){   
    scanf("%d", &go);
-    if ( go == 1){
-      lecturefuite(go);
-    }
   }
   return(go);
 }
@@ -211,9 +205,6 @@ int lecturecomi2bis2(int go){
   fclose(fichier);
 while (go != 1 || go != 2){
   scanf("%d", &go);
-  if ( go == 2){
-      lecturefuite(go);
-    }
   }
   return(go);
 }
@@ -254,8 +245,7 @@ int lecturecomi2bis4(){
     printf("%s \n", phrase);
   }
   fclose(fichier);
-  lecturemort();
-  return(0);
+  return(-1);
 }
 
 int lecturecomi3(int go){
@@ -296,9 +286,6 @@ int lecturecamp1(int go){
   fclose(fichier);
   while (go != 1 || go != 2){   
    scanf("%d", &go);
-    if ( go == 2){
-      lecturefuite(go);
-    }
   }
   return(go);
 }
@@ -380,9 +367,6 @@ int lecturehopitalgauche(int go){
   fclose(fichier);
   while (go != 1 || go != 2){
     scanf("%d", &go);
-    if (go == 1){
-      lecturefuite(go);
-    }
   }
   return(go);
 }
@@ -404,9 +388,6 @@ int lecturehopitaldroit1(int go){
   fclose(fichier);
   while (go < 1 && go > 3){
     scanf("%d", &go);
-    if (go == 3){
-      lecturefuite(go);
-    }
   }
   return(go);
 }
