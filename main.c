@@ -8,6 +8,7 @@ typedef struct {
   int agi;
   int aim;
   int luck;
+  int invent[20]; 
 } Heros;
 
 int MainPage(){
