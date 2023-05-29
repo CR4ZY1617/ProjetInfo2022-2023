@@ -53,7 +53,7 @@ int lecturecarte(int go){
     printf("%c", CaracterActuel);
   }
   fclose(fichier);
-   while (go<= 0 && go>5 ){
+   while (go<= 0 || go>5 ){
     scanf("%d", &go);
   }
   return(go);
@@ -484,9 +484,90 @@ int lectureville(){
   fclose(fichier);
   return(-1);
 
+ void lecturehéros(){
+  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+  int i,j;
+  int perso = 0;
+  Heros a;
+  FILE *fichier = NULL;
+  fichier = fopen("Créa perso.txt", "r+");
+  if (fichier == NULL) {
+    printf("Ouverture du fichier impossible");
+    exit(1);
+  }
+  char phrase[400];
+  for (i = 0; i < 17; i++) {
+    fgets(phrase, 399, fichier);
+    printf("%s \n", phrase);
+  }
+  while (perso<=0 || perso>3 ){
+  scanf("%d", &perso);
+  }
+  char phrase2[400];
+  for ( j = 0; j<10; j++){
+    fgets(phrase2, 399, fichier);
+    printf("%s \n", phrase2);
+  }
+   fclose(fichier);
+   if (perso == 1){
+     a.nom[0] = 'J';
+     a.nom[1] = 'a';
+     a.nom[2] = 'c';
+     a.nom[3] = 'o';
+     a.nom[4] = 'b';
+     a.pv = 15;
+     a.str = 5;
+     a.agi = 6;
+     a.aim = 5;
+     a.luck = 4;
+     a.invent[0] = 1;
+     a.invent[1] = 1;
+     a.invent[2] = 6;
+     a.invent[3] = 1;
+  }
+   if (perso == 2){
+     a.nom[0] = 'C';
+     a.nom[1] = 'l';
+     a.nom[2] = 'a';
+     a.nom[3] = 'i';
+     a.nom[4] = 'r';
+     a.nom[5] = 'e';  
+     a.pv = 10;
+     a.str = 3;
+     a.agi = 8;
+     a.aim = 8;
+     a.luck = 5;
+     a.invent[0] = 1;
+     a.invent[1] = 1;
+     a.invent[2] = 6;
+     a.invent[3] = 1;
+   }
+   if (perso == 3){
+     a.nom[0] = 'F';
+     a.nom[1] = 'r';
+     a.nom[2] = 'a';
+     a.nom[3] = 'n';
+     a.nom[4] = 'c';
+     a.nom[5] = 'k';  
+     a.pv = 20;
+     a.str = 8;
+     a.agi = 3;
+     a.aim = 2;
+     a.luck = 8;
+     a.invent[0] = 1;
+     a.invent[1] = 1;
+     a.invent[2] = 6;
+     a.invent[3] = 1;
+   }
+}   
 
 
-
+int main(){
+  int go = 0;
+  lecturehéros();
+  return(1);
+}
+  
 int lecturecombat(int go){
   //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
