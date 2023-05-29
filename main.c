@@ -4,6 +4,7 @@
 
 typedef struct {
   char nom[20];
+  int pv;
   int str;
   int agi;
   int aim;
