@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <allfonction.h>
+#include "allfonction.h"
 
 typedef struct {
   char nom[20];
