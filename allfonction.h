@@ -29,6 +29,8 @@ int lecturemort();
 int lecturecarte(int go);
 int lectureferme1(int go);
 int lectureferme2(int go);
+int lectureferme2bis(int go);
+int lectureferme2bis2(int go);
 int lectureferme3(int go);
 int lecturecomi1(int go);
 int lecturecomi2(int go);
