@@ -2,5 +2,5 @@ Vous avez pris le couloir droit, vous marchez seul dans l’hôpital quand souda
 
 19) Attendre
 18) Commencer à courir
-5) Sortir 
+21) Sortir 
 
