@@ -1,21 +1,5 @@
 #include "allfonction.h"
 
-typedef struct{
-  int pv;
-  int dgts;
-  char nom[50];
-} Ennemi;
-
-typedef struct {
-  char nom[20];
-  int pv;
-  int luck;
-  int agi;
-  int aim;
-  int str;
-  int invent[20]; 
-} Heros;
-
 int MainPage(){
   int go, choice = 0;
   FILE *fichier = NULL;
