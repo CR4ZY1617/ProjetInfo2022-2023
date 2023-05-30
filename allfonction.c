@@ -436,8 +436,8 @@ int lecturecomi2(int go){
   else if ( rep == 5){
     go = 5;
   }
-  else{
-    go == 11;
+  if ( rep == 1 || rep == 2 || rep == 4 ){
+    go = 11;
   }
   return(go);
 }
@@ -466,8 +466,8 @@ int lecturecomi2bis(int go){
   else if ( rep == 5){
     go = 5;
   }
-  else{
-    go == 11;
+  if ( rep == 1 || rep == 2 || rep == 4 ){
+    go = 11;
   }
   return(go);
 }
@@ -523,8 +523,8 @@ int lecturecomi2bis3(int go){
   else if ( rep == 5){
     go = 5;
   }
-  else{
-    go == 11;
+   if ( rep == 1 || rep == 2 || rep == 4 ){
+    go = 11;
   }
   return(go);
 }
