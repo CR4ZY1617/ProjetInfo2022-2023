@@ -705,7 +705,7 @@ int lecturehopitaldroit1(int go){
   }
   fclose(fichier);
   printf(" \n");
-  while (go!= 5 && go!=18 && go!=19 ){
+  while (go!= 21 && go!=18 && go!=19 ){
     scanf("%d", &go);
   }
   return(go);
