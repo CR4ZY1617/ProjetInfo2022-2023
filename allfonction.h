@@ -19,8 +19,8 @@ typedef struct {
 } Heros;
 
 int MainPage();
-int use_weapon(Chara a ,Ennemy b, int choice);
-int combat(Chara a, Ennemy b);
+int use_weapon(Heros a ,Ennemi b, int choice);
+int combat(Heros a, Ennemi b);
 int list(int go);
 void write_Heros(Heros a);
 Heros Initialise();
