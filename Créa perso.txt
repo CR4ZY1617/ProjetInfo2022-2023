@@ -21,6 +21,3 @@ Charisme : 4				Charisme : 5				Charisme : 8
     • x6 Balles
     • Couteau 
     • Trousse de soins ( rend 10 pv ).
-
-
-Vous venez de sortir de l’abris, vous ne savez pas dans quelle direction aller.
