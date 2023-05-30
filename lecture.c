@@ -99,6 +99,72 @@ int lectureferme2(int go){
   return(go);
 }
 
+int lectureferme2bis(int go){
+  //Ouvre et lit un fichier "lecture ferme2" puis lance la fonction combat qui renvoie 24 si on perd et 9 si on gagne.
+  int res;
+  Heros a;
+  Ennemy b;
+  FILE *fichier = NULL;
+  int CaracterActuel = EOF+1; 
+  fichier = fopen("ferme choix2bis.txt", "r+");
+  if (fichier == NULL) {
+    printf("Ouverture du fichier impossible");
+    exit(1);
+  }
+  while ( CaracterActuel != EOF ){
+    CaracterActuel = fgetc(fichier);
+    printf("%c", CaracterActuel);
+  }
+  fclose(fichier);
+  b = rat();
+  a = Initialise();
+  res = combat(a,b);
+  if (res == 0){
+    go = 24;
+  }
+  else if (res == 1){
+    go = 9;
+  }
+  else {
+    printf("Une erreur est arrivée")
+    exit(50);
+  }
+  return(go);
+}
+
+int lectureferme2bis(int go){
+  //Ouvre et lit un fichier "lecture ferme2" puis lance la fonction combat qui renvoie 24 si on perd et 9 si on gagne.
+  int res;
+  Heros a;
+  Ennemy b;
+  FILE *fichier = NULL;
+  int CaracterActuel = EOF+1; 
+  fichier = fopen("ferme choix2bis2.txt", "r+");
+  if (fichier == NULL) {
+    printf("Ouverture du fichier impossible");
+    exit(1);
+  }
+  while ( CaracterActuel != EOF ){
+    CaracterActuel = fgetc(fichier);
+    printf("%c", CaracterActuel);
+  }
+  fclose(fichier);
+  b = ratb();
+  a = Initialise();
+  res = combat(a,b);
+  if (res == 0){
+    go = 24;
+  }
+  else if (res == 1){
+    go = 9;
+  }
+  else {
+    printf("Une erreur est arrivée")
+    exit(50);
+  }
+  return(go);
+}
+
 int lectureferme3(int go){
   //Ouvre et lit un fichier "ferme choix 3" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
@@ -122,6 +188,9 @@ int lectureferme3(int go){
 int lecturecomi1(int go){
   //Ouvre et lit un fichier "comi choix 1" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
+  Heros a;
+  Ennemy b;
+  int res;
   int CaracterActuel = EOF+1;
   fichier = fopen("comi choix 1.txt", "r+");
   if (fichier == NULL) {
@@ -135,6 +204,14 @@ int lecturecomi1(int go){
   fclose(fichier);
   while (go != 10 || go != 5){   
    scanf("%d", &go);
+  }
+  if (go == 10){
+    a = Initialise();
+    b = goule();
+    res = combat(a,b);
+    if (res == 0){
+      go = 24;
+    }
   }
   return(go);
 }
@@ -311,6 +388,9 @@ int lecturecamp1(int go){
 
 int lecturecamp2(int go){
   //Ouvre et lit un fichier "camp choix 2" puis demande de rentrer un nombre entier.
+  Heros a;
+  Ennemy b;
+  int res,i = 3;
   FILE *fichier = NULL;
   int CaracterActuel = EOF+1;
   fichier = fopen("camp choix 2.txt", "r+");
@@ -323,12 +403,27 @@ int lecturecamp2(int go){
     printf("%c", CaracterActuel);
   }
   fclose(fichier);
-  go = 23;
+  a = Initialise();
+  do{
+    b = bandit();
+    res = combat(a,b);
+    i --;
+  } while (i != 3 && res != 0);
+  if (res == 1){
+    go = 23;
+  }
+  else if(res == 0){
+    go = 24;
+  }
+  else{
+    exit(12);
+  }
   return(go);
 }
 
 int lecturecamp3(int go){
   //Ouvre et lit le fichier "camp choix 3" puis demande de rentrer un nombre entier.
+  Heros a;
   FILE *fichier = NULL;
   int CaracterActuel = EOF+1;
   fichier = fopen("camp choix 3.txt", "r+");
@@ -344,6 +439,11 @@ int lecturecamp3(int go){
   while (go!=1 && go!=2 && go!=3 && go!=25 ){    
     scanf("%d", &go);
   }
+  a = Initialise();
+  a.invent[0] += 1;
+  a.invent[2] += 10;
+  a.invent[5] += 3;
+  write_Heros(a)
   return(go);
 }
 
@@ -369,6 +469,7 @@ int lecturehopital1(int go){
 
 int lecturehopitalgauche(int go){
   //Ouvre et lit le fichier "hopital choix gauche" puis demande de rentrer un nombre entier.
+  Heros a;
   FILE *fichier = NULL;
   int CaracterActuel = EOF+1;
   fichier = fopen("hopital choix gauche.txt", "r+");
@@ -384,6 +485,9 @@ int lecturehopitalgauche(int go){
   while (go != 5 || go != 17){
     scanf("%d", &go);
   }
+  a = Initialise();
+  a.invent[0] += 1;
+  write_Heros(a);
   return(go);
 }
 
@@ -469,7 +573,7 @@ int lecturehopitaldroit3(int go){
 
 
 int lectureville(){
-  //Ouvre et lit le fichier "mort" puis renvoie -1.
+  //Ouvre et lit le fichier "ville" puis renvoie -1.
   FILE *fichier = NULL;
   int CaracterActuel = EOF+1;
   fichier = fopen("ville.txt", "r+");
@@ -484,8 +588,8 @@ int lectureville(){
   fclose(fichier);
   return(-1);
 
- void lectureheros(){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
+ int lectureheros(int go){
+  //Ouvre et lit le fichier "Créa perso.txt" puis demande de rentrer un nombre entier.
   int i,j;
   int perso = 0;
   Heros a;
@@ -524,6 +628,8 @@ int lectureville(){
      a.invent[1] = 1;
      a.invent[2] = 6;
      a.invent[3] = 1;
+     a.invent[4] = 0;
+     a.invent[5] = 0;
   }
    if (perso == 2){
      a.nom[0] = 'C';
@@ -541,6 +647,8 @@ int lectureville(){
      a.invent[1] = 1;
      a.invent[2] = 6;
      a.invent[3] = 1;
+     a.invent[4] = 0;
+     a.invent[5] = 0;
    }
    if (perso == 3){
      a.nom[0] = 'F';
@@ -558,15 +666,12 @@ int lectureville(){
      a.invent[1] = 1;
      a.invent[2] = 6;
      a.invent[3] = 1;
+     a.invent[4] = 0;
+     a.invent[5] = 0;
    }
+  go = lecturecarte(go);
+  return (go);
 }   
-
-
-int main(){
-  int go = 0;
-  lecturehéros();
-  return(1);
-}
   
 int lecturecombat(int go){
   //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
