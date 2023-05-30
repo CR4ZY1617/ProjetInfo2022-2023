@@ -93,26 +93,6 @@ int combat(Heros a, Ennemy b){
   return(end);
 }
 
-int read0(int go){
-  //Ouvre et lit un fichier puis demande de rentrer un nombre entier.
-  int i;
-  FILE *fichier = NULL;
-  fichier = fopen("Start.txt", "r+");
-  if (fichier == NULL) {
-    printf("Ouverture du fichier impossible");
-    exit(1);
-  }
-  char phrase[400];
-  for (i = 0; i < 17; i++) {
-    fgets(phrase, 399, fichier);
-    printf("%s \n", phrase);
-  }
-  fclose(fichier);
-  while (go != )
-  scanf("%d", &go);
-  return(go);
-}
-
 int list(int go){
   //Permet d'accéder à la liste des fichiers. 
   int take = -1;    
