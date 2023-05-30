@@ -436,8 +436,8 @@ int lecturecomi2(int go){
   else if ( rep == 5){
     go = 5;
   }
-  if ( rep == 1 || rep == 2 || rep == 4 ){
-    go = 11;
+  else if ( rep == 1 || rep == 2 || rep == 4){
+    go == 11;
   }
   return(go);
 }
