@@ -327,7 +327,7 @@ int lectureferme2bis(int go){
   return(go);
 }
 
-int lectureferme2bis(int go){
+int lectureferme2bis2(int go){
   //Ouvre et lit un fichier "lecture ferme2" puis lance la fonction combat qui renvoie 24 si on perd et 9 si on gagne.
   int res;
   Heros a;
