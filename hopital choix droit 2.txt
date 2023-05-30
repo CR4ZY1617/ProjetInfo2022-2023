@@ -1,4 +1,4 @@
 Vous avez décider de fuir, vous courez peut-être pour votre vie. Alors, que vous prenez un rapide tournant dans un couloir, en vous retournant rapidement vous apercevez rapidement une silhouette qui vous poursuit. Que décidez-vous ?
 
-    1.  Lui tirer dessus
-    2. Continuer à courir 
+    20.  Lui tirer dessus
+    21. Continuer à courir 
