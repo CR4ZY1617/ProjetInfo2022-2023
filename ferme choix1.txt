@@ -1,3 +1,3 @@
 Vous avez décidé de vous rendre vers la ferme, vous vous dirigez donc vers la sortie de la ville, et alors qu’après plusieurs heures de marche au milieux des décombres, vous apercevez la ferme au loin. Soudain un flash de lumière, suivi un bruit sourd survient en direction de la ferme, vous accourez donc vers le dis bruit et tombez face à face avec un petit groupe de survivant qui essaient de se défendre contre 3 rats mutants. Que faites-vous ?
-    1. Fuite
-    2. Les aider
+    5. Fuite
+    6. Les aider
