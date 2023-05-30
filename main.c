@@ -1,17 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "allfonction.h"
-
-typedef struct {
-  char nom[20];
-  int pv;
-  int luck;
-  int agi;
-  int aim;
-  int str;
-  int invent[20]; 
-} Heros;
 
 int MainPage(){
   int go, choice = 0;
