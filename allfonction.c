@@ -25,7 +25,7 @@ void save(int go){
   fclose(file);
 }
 
-int use_weapon(Chara a ,Ennemy b, int choice){
+int use_weapon(Heros a ,Ennemi b, int choice){
   int damage;
   if (choice == 1){
     if (a.invent[1] <= 0 || a.invent[2] <= 0){
@@ -34,6 +34,7 @@ int use_weapon(Chara a ,Ennemy b, int choice){
     else{
       damage = a.str + 5;
     }
+  }
   else if(choice == 2){
     if (a.invent[3] <= 0){
       puts("Vous n'avez pas cette arme !");
@@ -62,9 +63,9 @@ Ennemi ratb(){
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  fscanf(test, "%s", A.nom );
-  fscanf(test, "%d", &A.pv );
-  fscanf(test, "%d", &A.dgts );
+  fscanf(test, "%s", A.name );
+  fscanf(test, "%d", &A.hp );
+  fscanf(test, "%d", &A.str );
   fclose(test);
   return(A);
 }
@@ -78,9 +79,9 @@ Ennemi rat(){
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  fscanf(test, "%s", A.nom );
-  fscanf(test, "%d", &A.pv );
-  fscanf(test, "%d", &A.dgts );
+  fscanf(test, "%s", A.name );
+  fscanf(test, "%d", &A.hp );
+  fscanf(test, "%d", &A.str );
   fclose(test);
   return(A);
 }
@@ -94,9 +95,9 @@ Ennemi bandit(){
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  fscanf(test, "%s", A.nom );
-  fscanf(test, "%d", &A.pv );
-  fscanf(test, "%d", &A.dgts );
+  fscanf(test, "%s", A.name );
+  fscanf(test, "%d", &A.hp );
+  fscanf(test, "%d", &A.str );
   fclose(test);
   return(A);
 }
@@ -110,47 +111,47 @@ Ennemi goule(){
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  fscanf(test, "%s", A.nom );
-  fscanf(test, "%d", &A.pv );
-  fscanf(test, "%d", &A.dgts );
+  fscanf(test, "%s", A.name );
+  fscanf(test, "%d", &A.hp );
+  fscanf(test, "%d", &A.str );
   fclose(test);
   return(A);
 }
 
-  int MainPage(){
-  int go, choice = 0;
+int MainPage(){
+  int go, choice;
   FILE *fichier = NULL;
-  int caraActuel = EOF+1;
+  char chaine[SPACE] = "";
   fichier = fopen("MainPage.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  while (caraActuel != EOF){
-    caraActuel = fgetc(fichier);
-    printf("%c",caraActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
+  scanf("%d", &choice);
   while (choice != 1 && choice != 2){
     scanf("%d",&choice);
-    if (choice != 1 && choice != 2){
-      puts("Ce numéro n'est pas valide,veuillez réessayer !");
-    }
-    else if (choice == 1){
-      go = 0;
-    }
-    else{
-      FILE * file = NULL;
-      file = fopen("save","rb+");
-      fread(&go,sizeof(int),1,file);
-      printf("%d \n",go);
-      fclose(file);
-    }
+  } 
+  if (choice != 1 && choice != 2){
+    puts("Ce numéro n'est pas valide,veuillez réessayer !");
+  }
+  else if (choice == 1){
+    go = 0;
+  }
+  else{
+    FILE * file = NULL;
+    file = fopen("save","rb+");
+    fread(&go,sizeof(int),1,file);
+    fclose(file);
   }
   return (go);
 } 
 
-int combat(Heros a, Ennemy b){
+int combat(Heros a, Ennemi b){
   int end,answer,choice_w;
   while (a.hp > 0 && b.hp > 0){
     puts("Que voulez vous faire ? \n 1.Attaque au poing \n 2.Prendre une arme \n 3.Utiliser une trousse de soin");
@@ -200,17 +201,17 @@ int combat(Heros a, Ennemy b){
 int lecturefuite(int go){
   //Ouvre le fichier "fuite" puis demande de rentrer un nombre entier entre 1 et 5.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("fuite.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("fuite.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
   while (go!=1 && go!=2 && go!=3 && go!=4 && go!=25 ){
     scanf("%d", &go);
   }
@@ -220,35 +221,35 @@ int lecturefuite(int go){
 int lecturemort(){
   //Ouvre et lit le fichier "mort" puis renvoie -1.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1; 
-  fichier = fopen("mort.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("mort.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
- while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
   return(-1);
 }
 
 int lecturecarte(int go){
   //Ouvre et lit le fichier "carte" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1; 
-  fichier = fopen("choix carte.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("choix carte.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
-   while (go<= 0 || go>5 ){
+  printf(" \n");
+   while (go != 1 && go != 2 && go != 3 && go != 4 && go!= 25){
     scanf("%d", &go);
   }
   return(go);
@@ -257,18 +258,18 @@ int lecturecarte(int go){
 int lectureferme1(int go){
   //Ouvre et lit le fichier "ferme choix1"  puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("fermechoix1.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("ferme choix1.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
-  while (go != 5 || go != 6){
+  printf(" \n");
+  while (go != 5 && go != 6){
     scanf("%d", &go);
   }
   return(go);
@@ -277,18 +278,18 @@ int lectureferme1(int go){
 int lectureferme2(int go){
   //Ouvre et lit un fichier "lecture ferme2" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1; 
-  fichier = fopen("ferme choix2.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("ferme choix2.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
-  while (go != 7 || go != 8){
+  printf(" \n");
+  while (go != 7 && go != 8){
     scanf("%d", &go);
   }
   return(go);
@@ -298,19 +299,19 @@ int lectureferme2bis(int go){
   //Ouvre et lit un fichier "lecture ferme2" puis lance la fonction combat qui renvoie 24 si on perd et 9 si on gagne.
   int res;
   Heros a;
-  Ennemy b;
+  Ennemi b;
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1; 
-  fichier = fopen("ferme choix2bis.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("ferme choix 2bis.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
   b = rat();
   a = Initialise();
   res = combat(a,b);
@@ -321,29 +322,29 @@ int lectureferme2bis(int go){
     go = 9;
   }
   else {
-    printf("Une erreur est arrivée")
+    printf("Une erreur est arrivée");
     exit(50);
   }
   return(go);
 }
 
 int lectureferme2bis2(int go){
-  //Ouvre et lit un fichier "lecture ferme2" puis lance la fonction combat qui renvoie 24 si on perd et 9 si on gagne.
+  //Ouvre et lit un fichier "lecture ferme2bis2" puis lance la fonction combat qui renvoie 24 si on perd et 9 si on gagne.
   int res;
   Heros a;
-  Ennemy b;
+  Ennemi b;
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1; 
-  fichier = fopen("ferme choix2bis2.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("ferme choix 2bis2.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
   b = ratb();
   a = Initialise();
   res = combat(a,b);
@@ -354,7 +355,7 @@ int lectureferme2bis2(int go){
     go = 9;
   }
   else {
-    printf("Une erreur est arrivée")
+    printf("Une erreur est arrivée");
     exit(50);
   }
   return(go);
@@ -363,17 +364,17 @@ int lectureferme2bis2(int go){
 int lectureferme3(int go){
   //Ouvre et lit un fichier "ferme choix 3" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("ferme choix3.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("ferme choix3.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
- while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
   while (go!=2 && go!=3 && go!=4 && go!=25){    
     scanf("%d", &go);
   }
@@ -382,22 +383,22 @@ int lectureferme3(int go){
 
 int lecturecomi1(int go){
   //Ouvre et lit un fichier "comi choix 1" puis demande de rentrer un nombre entier.
-  FILE *fichier = NULL;
   Heros a;
-  Ennemy b;
+  Ennemi b;
   int res;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("comi choix 1.txt", "r+");
+  FILE *fichier = NULL;
+  char chaine[SPACE] = "";
+  fichier = fopen("comi choix 1.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
- while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
-  while (go != 10 || go != 5){   
+  printf(" \n");
+  while (go != 10 && go != 5){   
    scanf("%d", &go);
   }
   if (go == 10){
@@ -415,46 +416,17 @@ int lecturecomi2(int go){
   //Ouvre et lit un fichier "comi choix 2" puis demande de rentrer un nombre entier.
   int rep = 0;
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("comi choix 2.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("comi choix 2.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
-  while (rep<=0 || rep>5){    
-    scanf("%d", &rep);
-  }
-  if ( rep == 3){
-    go = 15;
-  }
-  elseif ( rep == 5){
-    go = 5;
-  }
-  else{
-    go == 11
-  }
-  return(go);
-}
-
-int lecturecomi2bis(int go){
-  //Ouvre et lit un fichier "comi choix 2bis" puis demande de rentrer un nombre entier.
-  FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("comi choix 2bis.txt", "r+");
-  if (fichier == NULL) {
-    printf("Ouverture du fichier impossible");
-    exit(1);
-  }
- while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
-  }
-  fclose(fichier);
+  printf(" \n");
   while (rep<=0 || rep>5){    
     scanf("%d", &rep);
   }
@@ -465,27 +437,59 @@ int lecturecomi2bis(int go){
     go = 5;
   }
   else{
-    go == 11
+    go == 11;
+  }
+  return(go);
+}
+
+int lecturecomi2bis(int go){
+  //Ouvre et lit un fichier "comi choix 2bis" puis demande de rentrer un nombre entier.
+  int rep = 0;
+  FILE *fichier = NULL;
+  char chaine[SPACE] = "";
+  fichier = fopen("comi choix 2bis.txt", "r");
+  if (fichier == NULL) {
+    printf("Ouverture du fichier impossible");
+    exit(1);
+  }
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
+  }
+  fclose(fichier);
+  printf(" \n");
+  while (rep<=0 || rep>5){    
+    scanf("%d", &rep);
+  }
+  if ( rep == 3){
+    go = 15;
+  }
+  else if ( rep == 5){
+    go = 5;
+  }
+  else{
+    go == 11;
   }
   return(go);
 }
 
 int lecturecomi2bis2(int go){
   //Ouvre et lit un fichier "comi choix 2bis2" puis demande de rentrer un nombre entier.
-  int rep;
+  int rep = 0;
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("comi choix 2bis2.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("comi choix 2bis2.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
- while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
-  scanf("%d", &rep);
+  printf(" \n");
+  while (rep <= 0 || rep > 5){
+    scanf("%d", &rep);
+  }
   if ( rep == 2){
     go = 5;
   }
@@ -497,18 +501,19 @@ int lecturecomi2bis2(int go){
 
 int lecturecomi2bis3(int go){
   //Ouvre et lit un fichier "comi choix 2bis3 " puis demande de rentrer un nombre entier.
+  int rep = 0;
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("comi choix 2bis3.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("comi choix 2bis3.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
- while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
    while (rep<=0 || rep>5){    
     scanf("%d", &rep);
   }
@@ -519,7 +524,7 @@ int lecturecomi2bis3(int go){
     go = 5;
   }
   else{
-    go == 11
+    go == 11;
   }
   return(go);
 }
@@ -527,34 +532,34 @@ int lecturecomi2bis3(int go){
 int lecturecomi2bis4(){
   //Ouvre et lit un fichier "choix comi choix 2bis4" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1; 
-  fichier = fopen("comi choix 2bis4.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("comi choix 2bis4.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
   return(-1);
 }
 
 int lecturecomi3(int go){
   //Ouvre et lit un fichier "comi choix 3" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("comi choix 3.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("comi choix 3.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
   while (go!=1 && go!=3 && go!=4 && go!=25 ){
    scanf("%d", &go);
   }
@@ -564,18 +569,18 @@ while ( CaracterActuel != EOF ){
 int lecturecamp1(int go){
   //Ouvre et lit un fichier "camp choix 1" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("camp choix 1.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("camp choix 1.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
-  while (go != 5 || go != 22){   
+  printf(" \n");
+  while (go != 5 && go != 22){   
    scanf("%d", &go);
   }
   return(go);
@@ -584,20 +589,20 @@ int lecturecamp1(int go){
 int lecturecamp2(int go){
   //Ouvre et lit un fichier "camp choix 2" puis demande de rentrer un nombre entier.
   Heros a;
-  Ennemy b;
+  Ennemi b;
   int res,i = 3;
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("camp choix 2.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("camp choix 2.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
- while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
   a = Initialise();
   do{
     b = bandit();
@@ -620,17 +625,17 @@ int lecturecamp3(int go){
   //Ouvre et lit le fichier "camp choix 3" puis demande de rentrer un nombre entier.
   Heros a;
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("camp choix 3.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("camp choix 3.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
- while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
   while (go!=1 && go!=2 && go!=3 && go!=25 ){    
     scanf("%d", &go);
   }
@@ -638,25 +643,25 @@ int lecturecamp3(int go){
   a.invent[0] += 1;
   a.invent[2] += 10;
   a.invent[5] += 3;
-  write_Heros(a)
+  write_Heros(a);
   return(go);
 }
 
 int lecturehopital1(int go){
   //Ouvre et lit le fichier "hopital choix 1" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("hopital choix 1.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("hopital choix 1.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
- while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
-  while (go != 16 || go != 17){
+  printf(" \n");
+  while (go != 16 && go != 17){
     scanf("%d", &go);
   }
   return(go);
@@ -666,18 +671,18 @@ int lecturehopitalgauche(int go){
   //Ouvre et lit le fichier "hopital choix gauche" puis demande de rentrer un nombre entier.
   Heros a;
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("hopital choix gauche.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("hopital choix gauche.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
- while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
-  while (go != 5 || go != 17){
+  printf(" \n");
+  while (go != 5 && go != 17){
     scanf("%d", &go);
   }
   a = Initialise();
@@ -689,17 +694,17 @@ int lecturehopitalgauche(int go){
 int lecturehopitaldroit1(int go){
   //Ouvre et lit le fichier "hopital choix droit 1" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("hopital choix droit 1.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("hopital choix droit 1.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
   while (go!= 5 && go!=18 && go!=19 ){
     scanf("%d", &go);
   }
@@ -709,18 +714,18 @@ while ( CaracterActuel != EOF ){
 int lecturehopitaldroit2(int go){
   //Ouvre et lit le fichier "hopital choix droit 2" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("hopital choix droit 2.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("hopital choix droit 2.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
-  while (go != 19 || go != 20){
+  printf(" \n");
+  while (go != 19 && go != 20){
     scanf("%d", &go);
   }
   return(go);
@@ -729,17 +734,17 @@ int lecturehopitaldroit2(int go){
 int lecturehopitaldroit2bis(int go){
   //Ouvre et lit le fichier "hopital choix 2 bis" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("hopital choix droit 2 bis.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("hopital choix droit 2 bis.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
   while (go != 1 && go != 2 && go!=4 && go!=25){
     scanf("%d", &go);
   }
@@ -749,39 +754,60 @@ int lecturehopitaldroit2bis(int go){
 int lecturehopitaldroit3(int go){
   //Ouvre et lit le fichier "hopital choix droit 3" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("hopital choix droit 3.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("hopital choix droit 3.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
-  while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
   while (go != 1 && go != 2 && go!=4 && go!=25){
     scanf("%d", &go);
   }
   return(0);
 }
 
-
-int lectureville(){
-  //Ouvre et lit le fichier "ville" puis renvoie -1.
+int lecturehopital3(int go){
+  //Ouvre et lit le fichier "carte" puis demande de rentrer un nombre entier.
   FILE *fichier = NULL;
-  int CaracterActuel = EOF+1;
-  fichier = fopen("ville.txt", "r+");
+  char chaine[SPACE] = "";
+  fichier = fopen("hopital choix 3.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
   }
- while ( CaracterActuel != EOF ){
-    CaracterActuel = fgetc(fichier);
-    printf("%c", CaracterActuel);
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
   }
   fclose(fichier);
+  printf(" \n");
+   while (go != 1 && go != 2 && go != 4 && go != 25){
+    scanf("%d", &go);
+  }
+  return(go);
+}
+
+
+int lectureville(){
+  //Ouvre et lit le fichier "ville" puis renvoie -1.
+  FILE *fichier = NULL;
+  char chaine[SPACE] = "";
+  fichier = fopen("ville.txt", "r");
+  if (fichier == NULL) {
+    printf("Ouverture du fichier impossible");
+    exit(1);
+  }
+  while (fgets(chaine,SPACE,fichier)!= NULL){
+    printf("%s",chaine);
+  }
+  fclose(fichier);
+  printf(" \n");
   return(-1);
+}
 
  int lectureheros(int go){
   //Ouvre et lit le fichier "Créa perso.txt" puis demande de rentrer un nombre entier.
@@ -803,7 +829,7 @@ int lectureville(){
   scanf("%d", &perso);
   }
   char phrase2[400];
-  for ( j = 0; j<10; j++){
+  for ( j = 0; j<7; j++){
     fgets(phrase2, 399, fichier);
     printf("%s \n", phrase2);
   }
@@ -814,7 +840,7 @@ int lectureville(){
      a.nom[2] = 'c';
      a.nom[3] = 'o';
      a.nom[4] = 'b';
-     a.pv = 15;
+     a.hp = 15;
      a.str = 5;
      a.agi = 6;
      a.aim = 5;
@@ -833,7 +859,7 @@ int lectureville(){
      a.nom[3] = 'i';
      a.nom[4] = 'r';
      a.nom[5] = 'e';  
-     a.pv = 10;
+     a.hp = 10;
      a.str = 3;
      a.agi = 8;
      a.aim = 8;
@@ -852,7 +878,7 @@ int lectureville(){
      a.nom[3] = 'n';
      a.nom[4] = 'c';
      a.nom[5] = 'k';  
-     a.pv = 20;
+     a.hp = 20;
      a.str = 8;
      a.agi = 3;
      a.aim = 2;
@@ -864,93 +890,7 @@ int lectureville(){
      a.invent[4] = 0;
      a.invent[5] = 0;
    }
+   write_Heros(a);
   go = lecturecarte(go);
   return (go);
-}
-  
-  int list(int go){
-  //Permet d'accéder à la liste des fichiers. 
-  int take = -1;    
-  switch(go){
-    case 0 : save(go);
-      take = lectureheroes(go);
-    break;
-    case 1 : save(go);
-      take = lectureferme1(go);
-    break;
-    case 2 : save(go);
-      take = lecturecomi1(go);
-    break;
-    case 3 : save(go);
-      take = lecturehopital1(go);
-    break;
-    case 4 : save(go);
-      take = lecturecamp1(go);
-    break;
-    case 5 : save(go);
-      take = lecturefuite(go);
-    break;
-    case 6 : save(go);
-      take = lectureferme2(go);
-    break;
-    case 7 : save(go);
-      take = lectureferme2bis(go);
-    break;
-    case 8 : save(go);
-      take = lecturefermebis2(go);
-    break;
-    case 9 : save(go);
-      take = lectureferme3(go);
-    break;
-    case 10 : save(go);
-      take = lecturecomi2(go);
-    break;
-    case 11 : save(go);
-      take = lecturecomi2bis(go);
-    break;
-    case 12 : save(go);
-      take = lecturecomi2bis2(go);
-    break;
-    case 13 : save(go);
-      take = lecturecomi2bis3(go);
-    break;
-    case 14 : save(go);
-      take = lecturecomi2bis4(go);
-    break;
-    case 15 : save(go);
-      take = lecturecomi3(go);
-    break;
-    case 16 : save(go);
-      take = lecturehopitalgauche(go);
-    break;
-    case 17 : save(go);
-      take = lecturehopitaldroit1(go);
-    break;
-    case 18 : save(go);
-      take = lecturehopitaldroit2(go);
-    break;
-    case 19 : save(go);
-      take = lecturehopitaldroit2bis(go);
-    break;
-    case 20 : save(go);
-      take = lecturehopitaldroit3(go);
-    break;
-    case 21 : save(go);
-      take = lecturehopital3(go);
-    break;
-    case 22 : save(go);
-      take = lecturecamp2(go);
-    break;
-    case 23 : save(go);
-      take = lecturecamp3(go);
-    break;
-    case 24 : save(go);
-      take = lecturemort();
-    break;
-    case 25 : save(go);
-      take = lectureville(go);
-    break;
-    default : puts("Vous êtes hors des limites ! Mauvaise nouvelles, votre aventure s'arrête ici !");
-    }
-  return(take);
 }

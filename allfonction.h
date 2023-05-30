@@ -1,16 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define SPACE 1000
 
 typedef struct{
-  int pv;
-  int dgts;
-  char nom[50];
+  int hp;
+  int str;
+  char name[50];
 } Ennemi;
 
 typedef struct {
   char nom[20];
-  int pv;
+  int hp;
   int luck;
   int agi;
   int aim;
@@ -48,8 +49,10 @@ int lecturehopitaldroit1(int go);
 int lecturehopitaldroit2(int go);
 int lecturehopitaldroit2bis(int go);
 int lecturehopitaldroit3(int go);
+int lecturehopital3(int go);
 int lectureville();
 int lectureheros(int go);
+void save (int go);
 Ennemi ratb();
 Ennemi rat();
 Ennemi bandit();

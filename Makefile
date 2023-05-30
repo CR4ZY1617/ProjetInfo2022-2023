@@ -1,9 +1,9 @@
 all:exec
 
-main.o: main.c
+main.o: main.c main.h
 	gcc -c main.c -o main.o
 
-fonction.o: allfonction.c allfonction.h
+allfonction.o: allfonction.c allfonction.h
 	gcc -c allfonction.c -o allfonction.o
   
 exec: main.o allfonction.o
