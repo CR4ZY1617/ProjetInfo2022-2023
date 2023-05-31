@@ -33,6 +33,8 @@ int use_weapon(Heros a ,Ennemi b, int choice){
     }
     else{
       damage = a.str + 5;
+      a.invent[2] --;
+      printf("Vous attaquez %s, vous lui infligez %d dégâts ! \n", b.name , a.str+5 );
     }
   }
   else if(choice == 2){
@@ -41,6 +43,7 @@ int use_weapon(Heros a ,Ennemi b, int choice){
     }
     else{
       damage = a.str + 2;
+      printf("Vous attaquez %s, vous lui infligez %d dégâts ! \n", b.name , a.str+2 );
     }
   }
   else{
@@ -49,6 +52,7 @@ int use_weapon(Heros a ,Ennemi b, int choice){
     }
     else{
       damage = a.str + 7;
+      printf("Vous attaquez %s, vous lui infligez %d dégâts ! \n", b.name , a.str+7 );
     }
   }
   return(damage);
@@ -58,7 +62,7 @@ Ennemi ratb(){
   //Lis le nom et les stats du rat dans son fichier.
   Ennemi A;
   FILE *test = NULL;
-  test = fopen("rat bléssé.txt", "r+");
+  test = fopen("rat blessé.txt", "r+");
   if (test == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
@@ -86,11 +90,43 @@ Ennemi rat(){
   return(A);
 }
 
-Ennemi bandit(){
+Ennemi bandit1(){
   //Lis le nom et les stats du rat mutant dans son fichier.
   Ennemi A; 
   FILE *test = NULL;
-  test = fopen("bandit.txt", "r+");
+  test = fopen("bandit1.txt", "r+");
+  if (test == NULL) {
+    printf("Ouverture du fichier impossible");
+    exit(1);
+  }
+  fscanf(test, "%s", A.name );
+  fscanf(test, "%d", &A.hp );
+  fscanf(test, "%d", &A.str );
+  fclose(test);
+  return(A);
+}
+
+Ennemi bandit2(){
+  //Lis le nom et les stats du rat mutant dans son fichier.
+  Ennemi A; 
+  FILE *test = NULL;
+  test = fopen("bandit2.txt", "r+");
+  if (test == NULL) {
+    printf("Ouverture du fichier impossible");
+    exit(1);
+  }
+  fscanf(test, "%s", A.name );
+  fscanf(test, "%d", &A.hp );
+  fscanf(test, "%d", &A.str );
+  fclose(test);
+  return(A);
+}
+
+Ennemi bandit3(){
+  //Lis le nom et les stats du rat mutant dans son fichier.
+  Ennemi A; 
+  FILE *test = NULL;
+  test = fopen("bandit3.txt", "r+");
   if (test == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
@@ -119,7 +155,7 @@ Ennemi goule(){
 }
 
 int MainPage(){
-  int go, choice;
+  int go, choice = 0;
   FILE *fichier = NULL;
   char chaine[SPACE] = "";
   fichier = fopen("MainPage.txt", "r");
@@ -133,7 +169,8 @@ int MainPage(){
   fclose(fichier);
   printf(" \n");
   scanf("%d", &choice);
-  while (choice != 1 && choice != 2){
+  while (choice <= 0 || choice > 2){
+    puts("Mauvais numéro, réessayez !");
     scanf("%d",&choice);
   } 
   if (choice != 1 && choice != 2){
@@ -153,7 +190,8 @@ int MainPage(){
 
 int combat(Heros a, Ennemi b){
   int end,answer,choice_w;
-  while (a.hp > 0 && b.hp > 0){
+  printf("\n %s vous attaque ! \n",b.name);
+  do{
     puts("Que voulez vous faire ? \n 1.Attaque au poing \n 2.Prendre une arme \n 3.Utiliser une trousse de soin");
     scanf("%d",&answer);
     if (answer == 1){
@@ -168,29 +206,39 @@ int combat(Heros a, Ennemi b){
         puts("2.Couteau");
       }
       if (a.invent[4] > 0 && a.invent[5] > 0){
-        printf("3.Fusil à pompe(%d balles)", a.invent[5]);  
+        printf("3.Fusil à pompe(%d balles) \n", a.invent[5]);  
       }
       do{
         scanf("%d", &choice_w);
       }while(choice_w <= 0 || choice_w > 3);
       b.hp = b.hp - use_weapon(a,b,choice_w);
+      if(choice_w == 1){
+        a.invent[2] --;
+      }
+      if(choice_w == 3){
+        a.invent[5] --;
+      }
     }
     else if(answer == 3){
-      if (a.invent[0] != 1){
+      if (a.invent[0] > 0){
         puts("Vous soignez 10 points de vie !");
         a.hp += 10;
+        a.invent[0] = a.invent[0] -1;
+        printf("Il vous reste %d trousse de soin \n", a.invent[0]);
       }
       else{
         puts("Vous cherchez une trousse de soin mais vous n'en avez pas, vous passez votre tour !");
       }
     }
-    if (b.hp != 0){
+    if (b.hp > 0){
       a.hp = a.hp - b.str;
       printf("Vous subissez %d dégâts, il vous en reste %d \n", b.str, a.hp);
     }
-  }
+    printf("Il reste %d points de vie à votre ennemi \n \n",b.hp);
+  } while (a.hp > 0 && b.hp > 0);
   if (a.hp > 0){
     end = 1;
+    write_Heros(a);
   }
   else{
     end = 0;
@@ -298,11 +346,11 @@ int lectureferme2(int go){
 int lectureferme2bis(int go){
   //Ouvre et lit un fichier "lecture ferme2" puis lance la fonction combat qui renvoie 24 si on perd et 9 si on gagne.
   int res;
-  Heros a;
-  Ennemi b;
+  Heros a = Initialise();
+  Ennemi b = rat();
   FILE *fichier = NULL;
   char chaine[SPACE] = "";
-  fichier = fopen("ferme choix 2bis.txt", "r");
+  fichier = fopen("ferme choix2bis.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
@@ -312,8 +360,6 @@ int lectureferme2bis(int go){
   }
   fclose(fichier);
   printf(" \n");
-  b = rat();
-  a = Initialise();
   res = combat(a,b);
   if (res == 0){
     go = 24;
@@ -331,11 +377,11 @@ int lectureferme2bis(int go){
 int lectureferme2bis2(int go){
   //Ouvre et lit un fichier "lecture ferme2bis2" puis lance la fonction combat qui renvoie 24 si on perd et 9 si on gagne.
   int res;
-  Heros a;
-  Ennemi b;
+  Heros a = Initialise();
+  Ennemi b = ratb();
   FILE *fichier = NULL;
   char chaine[SPACE] = "";
-  fichier = fopen("ferme choix 2bis2.txt", "r");
+  fichier = fopen("ferme choix2bis2.txt", "r");
   if (fichier == NULL) {
     printf("Ouverture du fichier impossible");
     exit(1);
@@ -345,8 +391,6 @@ int lectureferme2bis2(int go){
   }
   fclose(fichier);
   printf(" \n");
-  b = ratb();
-  a = Initialise();
   res = combat(a,b);
   if (res == 0){
     go = 24;
@@ -363,6 +407,7 @@ int lectureferme2bis2(int go){
 
 int lectureferme3(int go){
   //Ouvre et lit un fichier "ferme choix 3" puis demande de rentrer un nombre entier.
+  Heros a = Initialise();
   FILE *fichier = NULL;
   char chaine[SPACE] = "";
   fichier = fopen("ferme choix3.txt", "r");
@@ -375,6 +420,8 @@ int lectureferme3(int go){
   }
   fclose(fichier);
   printf(" \n");
+  a.invent[2] += 4;
+  write_Heros(a);
   while (go!=2 && go!=3 && go!=4 && go!=25){    
     scanf("%d", &go);
   }
@@ -426,18 +473,16 @@ int lecturecomi2(int go){
     printf("%s",chaine);
   }
   fclose(fichier);
-  printf(" \n");
+  printf(" \n");   
   while (rep<=0 || rep>5){    
     scanf("%d", &rep);
   }
+  go = 11;
   if ( rep == 3){
     go = 15;
   }
-  else if ( rep == 5){
+  if ( rep == 5){
     go = 5;
-  }
-  else if ( rep == 1 || rep == 2 || rep == 4){
-    go == 11;
   }
   return(go);
 }
@@ -467,14 +512,16 @@ int lecturecomi2bis(int go){
     go = 5;
   }
   if ( rep == 1 || rep == 2 || rep == 4 ){
-    go = 11;
+    go = 12;
   }
   return(go);
 }
 
 int lecturecomi2bis2(int go){
   //Ouvre et lit un fichier "comi choix 2bis2" puis demande de rentrer un nombre entier.
-  int rep = 0;
+  Heros a;
+  Ennemi b;
+  int res;
   FILE *fichier = NULL;
   char chaine[SPACE] = "";
   fichier = fopen("comi choix 2bis2.txt", "r");
@@ -487,14 +534,21 @@ int lecturecomi2bis2(int go){
   }
   fclose(fichier);
   printf(" \n");
-  while (rep <= 0 || rep > 5){
-    scanf("%d", &rep);
+  while (go != 13 && go != 5){
+    scanf("%d", &go);
   }
-  if ( rep == 2){
-    go = 5;
+  if (go == 13){
+    a = Initialise();
+    b = goule();
+    res = combat(a,b);
+    if (res == 1){
+      a = Initialise();
+      b = goule();
+      res = combat(a,b);
+    }
   }
-  else{
-    printf(" Vous allez vous battre \n" );
+  if (res == 0){
+    go = 24;
   }
   return(go);
 }
@@ -524,7 +578,7 @@ int lecturecomi2bis3(int go){
     go = 5;
   }
    if ( rep == 1 || rep == 2 || rep == 4 ){
-    go = 11;
+    go = 14;
   }
   return(go);
 }
@@ -548,6 +602,7 @@ int lecturecomi2bis4(){
 
 int lecturecomi3(int go){
   //Ouvre et lit un fichier "comi choix 3" puis demande de rentrer un nombre entier.
+  Heros a;
   FILE *fichier = NULL;
   char chaine[SPACE] = "";
   fichier = fopen("comi choix 3.txt", "r");
@@ -560,6 +615,11 @@ int lecturecomi3(int go){
   }
   fclose(fichier);
   printf(" \n");
+  a = Initialise();
+  a.invent[4] += 1;
+  a.invent[5] += 5;
+  a.hp += 5;
+  write_Heros(a);
   while (go!=1 && go!=3 && go!=4 && go!=25 ){
    scanf("%d", &go);
   }
@@ -589,7 +649,7 @@ int lecturecamp1(int go){
 int lecturecamp2(int go){
   //Ouvre et lit un fichier "camp choix 2" puis demande de rentrer un nombre entier.
   Heros a;
-  Ennemi b;
+  Ennemi b,c,d;
   int res,i = 3;
   FILE *fichier = NULL;
   char chaine[SPACE] = "";
@@ -604,11 +664,18 @@ int lecturecamp2(int go){
   fclose(fichier);
   printf(" \n");
   a = Initialise();
-  do{
-    b = bandit();
+  b = bandit1();
+  res = combat(a,b);
+  if(res == 1){
+    a = Initialise();
+    b = bandit2();
     res = combat(a,b);
-    i --;
-  } while (i != 3 && res != 0);
+    if (res == 1){
+      a = Initialise();
+      b = bandit3();
+      res = combat(a,b);
+    }
+  }
   if (res == 1){
     go = 23;
   }
@@ -682,7 +749,7 @@ int lecturehopitalgauche(int go){
   }
   fclose(fichier);
   printf(" \n");
-  while (go != 5 && go != 17){
+  while (go != 21 && go != 17){
     scanf("%d", &go);
   }
   a = Initialise();
@@ -745,10 +812,10 @@ int lecturehopitaldroit2bis(int go){
   }
   fclose(fichier);
   printf(" \n");
-  while (go != 1 && go != 2 && go!=4 && go!=25){
-    scanf("%d", &go);
+  while (go != 21){
+    scanf("%d",&go);  
   }
-  return(0);
+  return(go);
 }
 
 int lecturehopitaldroit3(int go){
@@ -765,10 +832,10 @@ int lecturehopitaldroit3(int go){
   }
   fclose(fichier);
   printf(" \n");
-  while (go != 1 && go != 2 && go!=4 && go!=25){
-    scanf("%d", &go);
+  while (go != 21){
+    scanf("%d",&go);  
   }
-  return(0);
+  return(go);
 }
 
 int lecturehopital3(int go){
@@ -878,7 +945,7 @@ int lectureville(){
      a.nom[3] = 'n';
      a.nom[4] = 'c';
      a.nom[5] = 'k';  
-     a.hp = 20;
+     a.hp = 21;
      a.str = 8;
      a.agi = 3;
      a.aim = 2;
