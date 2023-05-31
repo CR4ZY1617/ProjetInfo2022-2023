@@ -9,3 +9,4 @@ Une fonction permet d'accéder à la liste des fichiers. Un autre structure Enne
 
 Écrire ./exec pour lancer programme.
 Relancez un terminal pour nouvelle partie.
+ATTENTION : Toute entrée d'un caractère autre qu'un nombre dans n'importe quel choix du programme le fera crasher.
