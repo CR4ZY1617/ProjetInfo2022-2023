@@ -20,7 +20,6 @@ Heros Initialise(){
 void save(int go){
   FILE * file = NULL;
   file = fopen("save","wb+");
-
   fwrite(&go,sizeof(int),1,file);
   fclose(file);
 }
